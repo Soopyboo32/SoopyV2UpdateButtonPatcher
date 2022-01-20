@@ -1,0 +1,8 @@
+{
+    "name": "SoopyV2UpdateButtonPatcher",
+    "creator": "Soopyboo32",
+    "description": "Adds back in the update to latest version button in the soopyv2 changelog page",
+    "requires": ["SoopyV2"],
+    "version": "0.0.1",
+    "entry": "index.js"
+}
