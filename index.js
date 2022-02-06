@@ -8,6 +8,7 @@ import ButtonWithArrow from "../guimanager/GuiElement/ButtonWithArrow";
 import SoopyMouseClickEvent from "../guimanager/EventListener/SoopyMouseClickEvent";
 import ProgressBar from "../guimanager/GuiElement/ProgressBar"
 import SoopyRenderEvent from "../guimanager/EventListener/SoopyRenderEvent"
+import categoryManager from "../SoopyV2/features/soopyGui/categoryManager";
 const File = Java.type("java.io.File")
 const URL = Java.type("java.net.URL");
 const PrintStream = Java.type("java.io.PrintStream");
@@ -193,22 +194,7 @@ This is fine if you trust me to not put a virus in it, but if you dont you shoul
 let changelogPage = new ChangelogPage()
 
 register("step", ()=>{
-    if(!global.soopyv2featuremanagerthing) return
-    if(!global.soopyv2featuremanagerthing.features["soopyGui"]) return
-    let load = false
-    let done = false
-    global.soopyv2featuremanagerthing.features["soopyGui"].class.pages.forEach(p=>{
-        if(p.name=== "Changelog"){
-            load = true
-            if(p.isPatch){
-                done = true
-            }else{
-                done = false
-            }
-        }
-    })
-    if(!load || done) return
+    if(categoryManager.categorys["Changelog"].isPatch) return
 
-    global.soopyv2featuremanagerthing.features["soopyGui"].class.pages = global.soopyv2featuremanagerthing.features["soopyGui"].class.pages.filter(a=>a.name!=="Changelog")
-    global.soopyv2featuremanagerthing.features["soopyGui"].class.addCategory(changelogPage)
+    categoryManager.addCategory(changelogPage)
 }).setDelay(2)
